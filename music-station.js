@@ -108,6 +108,8 @@ function playMusic(musicId) {
                     Now:<br>
                     Title:<b>${name}</b><br>
                     Author:<b>${author}</b><br>
+                    Next:<br>
+                    Title:${MUSICLIST[musicNumber+1].title}
                     `);
                 setTimeout(function () {
                     console.log("Next");
