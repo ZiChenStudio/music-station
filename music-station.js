@@ -88,10 +88,11 @@ function playMusic(musicId) {
             if (result.data === undefined || result.data === null) {
                 console.error("API Error!");
                 return;
-            } name = result.data.title;
+            }
+            name = result.data.title;
             author = result.data.author;
             url = result.data.url;
-            console.log(name + author + url);
+            console.log(name + '\n' + author + '\n' + url);
 
             let audio = new Audio(url);
             audio.addEventListener('loadedmetadata', function () {
@@ -99,25 +100,27 @@ function playMusic(musicId) {
                 console.log(`MP3 文件长度：${duration} 秒`);
                 if (isCurrentTime === true) {
                     currentTime = Math.round(new Date().getTime() / 1000 - 1697817600) - timeS;
-                    audio.currentTime = currentTime;
                     console.log(Math.round(new Date().getTime() / 1000 - 1697817600) - timeS);
                     isCurrentTime = false;
+                } else {
+                    currentTime = 0;
                 }
+                audio.currentTime = currentTime;
                 audio.play();
+                console.log(duration - currentTime);
                 $("#nowPlay").html(`
                     Now:<br>
                     Title:<b>${name}</b><br>
                     Author:<b>${author}</b><br>
                     Next:<br>
-                    Title:${MUSICLIST[musicNumber+1].title}
-                    `);
+                    Title: ${MUSICLIST[musicNumber + 1] ? MUSICLIST[musicNumber + 1].title : MUSICLIST[0].title}
+                `);
                 setTimeout(function () {
                     console.log("Next");
                     musicNumber++;
                     if (musicNumber >= MUSICLIST.length) {
                         musicNumber = 0;
                     };
-                    audio.currentTime = 0;
                     audio.pause();
                     playMusic(MUSICLIST[musicNumber].id);
                 }, (duration - currentTime) * 1000);
