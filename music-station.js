@@ -44,7 +44,8 @@ const MUSICLIST = [
     {"id": 28996501, "time": 224, "title": "drop pop candy"},
     {"id": 407485173, "time": 261, "title": "マインドブランド"},
     {"id": 432486474, "time": 270, "title": "妄想感傷代償連盟"},
-    {"id": 1941347910, "time": 162, "title": "絶対敵対メチャキライヤー"}
+    {"id": 1941347910, "time": 162, "title": "絶対敵対メチャキライヤー"},
+    {"id": 1335681507, "time": 246, "title": "Happy Halloween"}
 ];
 let musicNumber = 0;
 let name;
