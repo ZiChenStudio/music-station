@@ -1,6 +1,6 @@
 body {
-  margin: 0 auto;
-  max-width: 800px;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 button {
@@ -36,4 +36,13 @@ button:hover {
 
 #musicListShow li:hover {
     background-color: #e9ecef;
+}
+
+#musicListShow a {
+    color: black;
+    text-decoration: none;
+}
+
+#musicListShow a:hover {
+    text-decoration: underline;
 }

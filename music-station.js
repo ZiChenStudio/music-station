@@ -45,7 +45,11 @@ const MUSICLIST = [
     {"id": 407485173, "time": 261, "title": "マインドブランド"},
     {"id": 432486474, "time": 270, "title": "妄想感傷代償連盟"},
     {"id": 1941347910, "time": 162, "title": "絶対敵対メチャキライヤー"},
-    {"id": 1335681507, "time": 246, "title": "Happy Halloween"}
+    {"id": 1335681507, "time": 246, "title": "Happy Halloween"},
+    {"id": 1968043773, "time": 186, "title": "ゾンビ"},
+    {"id": 2097828677, "time": 159, "title": "はぐ"},
+    {"id": 29045727, "time": 210, "title": "White Prism"},
+    {"id": 1456486939, "time": 161, "title": "春嵐"}
 ];
 let musicNumber = 0;
 let name;
@@ -57,7 +61,7 @@ let currentTime = 0;
 let isCurrentTime = true;
 let allMusicTime = 0;
 for (let i = 0; i < MUSICLIST.length; i++) {
-    $("#musicListShow").append("<li>" + MUSICLIST[i].title + "</li>");
+    $("#musicListShow").append(`<li>${MUSICLIST[i].title}<a href="https://music.163.com/#/song?id=${MUSICLIST[i].id}" target="_blank">&#8599;</a></li>`);
     allMusicTime += MUSICLIST[i].time;
 }
 $("#allMusicTime").append(allMusicTime + "s");
