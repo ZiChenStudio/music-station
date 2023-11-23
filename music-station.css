@@ -1,9 +1,9 @@
-body {
+main {
     margin: 0 auto;
     max-width: 800px;
 }
 
-button {
+#play {
     background-color: #007bff;
     display: block;
     margin: 0 auto;
@@ -16,7 +16,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+#play:hover {
     background-color: #0069d9;
 }
 

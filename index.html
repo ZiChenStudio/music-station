@@ -9,13 +9,17 @@
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
     </head>
     <body>
-        <button onclick="musicBegin()">Play</button>
-        <p id="nowPlay" style="text-align: center;"></p>
-        <hr>
-        <p id="allMusicTime">Time:</p>
-        <ol id="musicListShow">
-        </ol>
-        <script src="music-station.js"></script>
-        <link href="music-station.css" rel="stylesheet">
+        <main>
+            <button onclick="musicBegin()" id="play">Play</button>
+            <p id="nowPlay" style="text-align: center;"></p>
+            <hr>
+            <p id="allMusicTime">Time:</p>
+            <input id="chooseNumber" type="text">
+            <button type="submit" onclick="chooseMusicToplay()">GO</button>
+            <ol id="musicListShow">
+            </ol>
+        </main>
+            <script src="music-station.js"></script>
+            <link href="music-station.css" rel="stylesheet">
     </body>
 </html>
