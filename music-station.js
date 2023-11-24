@@ -104,44 +104,46 @@ function playMusic(musicId) {
             url = result.data.url;
             console.log(name + '\n' + author + '\n' + url);
             // Audio
-            if (isChoosing) {
-                audio?.pause();
-            }
-            else {
-                console.log(chooseNumber);
-            }
+            audio?.pause();
             audio = new Audio(url);
             audio.addEventListener('loadedmetadata', function () {
                 let duration = Math.floor(audio.duration);
                 console.log(`MP3 文件长度：${duration} 秒`);
-                if (isCurrentTime && !isChoosing) {
+                if (!isChoosing) {
                     currentTime = Math.round(new Date().getTime() / 1000 - 1697817600) - timeS;
                     console.log(Math.round(new Date().getTime() / 1000 - 1697817600) - timeS);
-                    isCurrentTime = false;
+                    timeS = 0;
                 } else {
                     currentTime = 0;
                 }
                 audio.currentTime = currentTime;
                 audio.play();
                 console.log(duration - currentTime);
-                $("#nowPlay").html(`
+                if (!isChoosing) {
+                    $("#nowPlay").html(`
                     Now:<br>
                     Title:<b>${name}</b><br>
                     Author:<b>${author}</b><br>
                     Next:<br>
                     Title: ${MUSICLIST[musicNumber + 1] ? MUSICLIST[musicNumber + 1].title : MUSICLIST[0].title}
-                `);
-                if (!isChoosing) {
-                    setTimeout(function () {
-                        console.log("Next");
-                        musicNumber++;
-                        if (musicNumber >= MUSICLIST.length) {
-                            musicNumber = 0;
-                        };
-                        audio.pause();
-                        playMusic(MUSICLIST[musicNumber].id);
-                    }, (duration - currentTime) * 1000);
+                    `);
+                } else {
+                    $("#nowPlay").html(`
+                    Now:<br>
+                    Title:<b>${name}</b><br>
+                    Author:<b>${author}</b><br>
+                    `);
                 }
+                setTimeout(function () {
+                    console.log("Next");
+                    musicNumber++;
+                    if (musicNumber >= MUSICLIST.length) {
+                        musicNumber = 0;
+                    }
+                    if (!isChoosing && isMusicPlay) {
+                        playMusic(MUSICLIST[musicNumber].id);
+                    }
+                }, (duration - currentTime) * 1000);
             });
         },
         error: function (xhr, status, error) {
@@ -151,11 +153,15 @@ function playMusic(musicId) {
 }
 function playCurrentSong() {
     isMusicPlay = true;
+    isChoosing = false;
+    isCurrentTime = true;
     playMusic(MUSICLIST[musicNumber].id);
 }
 
 function chooseMusicToplay() {
+    isMusicPlay = false;
     isChoosing = true;
+    musicNumber = 0;
     chooseNumber = document.getElementById("chooseNumber").value - 1;
     if (chooseNumber < 0 || isNaN(chooseNumber) || chooseNumber % 1 !== 0 || chooseNumber >= MUSICLIST.length) {
         document.getElementById("chooseNumber").value = "?";
